@@ -1,9 +1,9 @@
 # OpenCode Configuration Repository / OpenCode 配置仓库
 
-> A complete, portable OpenCode development environment configuration.  
+> Setup guides and configuration templates for an OpenCode development environment.  
 > Designed for AI agents to autonomously set up an OpenCode environment from scratch.
 >
-> 一套完整、可移植的 OpenCode 开发环境配置。  
+> OpenCode 开发环境的配置指南和模板。  
 > 专为 AI 自主完成 OpenCode 环境搭建而设计。
 
 ---
@@ -12,7 +12,6 @@
 - [English](#english)
   - [What This Is](#what-this-is)
   - [Prerequisites](#prerequisites)
-  - [Quick Setup (One Command)](#quick-setup-one-command)
   - [Step-by-Step Setup for AI Agents](#step-by-step-setup-for-ai-agents)
     - [1. Install OpenCode CLI](#1-install-opencode-cli)
     - [2. Configure opencode.json](#2-configure-opencodejson)
@@ -26,7 +25,6 @@
 - [简体中文](#简体中文)
   - [这是什么](#这是什么)
   - [前置条件](#前置条件)
-  - [快速配置（一条命令）](#快速配置一条命令)
   - [AI 自主配置步骤](#ai-自主配置步骤)
     - [1. 安装 OpenCode CLI](#1-安装-opencode-cli)
     - [2. 配置 opencode.json](#2-配置-opencodejson)
@@ -44,13 +42,13 @@
 
 ### What This Is
 
-This repository contains the complete configuration for an **OpenCode AI coding assistant** development environment, including:
+This repository contains setup guides and configuration templates for an **OpenCode AI coding assistant** development environment. Follow the steps below to configure:
 
-- **opencode.json** — Core OpenCode configuration (model, MCP, plugins)
-- **oh-my-opencode-slim.json** — Multi-agent orchestration (7 specialized agents)
-- **AGENTS.md** — Behavioral conventions and tooling rules
-- **39 Skills** — Domain-specific AI capabilities (Vue, TDD, UI design, web search, etc.)
-- **5 MCP services** — Browser debugging, web search, code search, documentation lookup
+- **opencode.json** — Core OpenCode configuration (model, MCP, plugins), create at `~/.config/opencode/`
+- **oh-my-opencode-slim.json** — Multi-agent orchestration (7 specialized agents), create at `~/.config/opencode/`
+- **AGENTS.md** — Behavioral conventions and tooling rules, create at `~/.config/opencode/`
+- **Skills** — Domain-specific AI capabilities (Vue, TDD, UI design, web search, etc.), install via commands below
+- **MCP services** — Browser debugging, web search, code search, documentation lookup (2 local + 3 auto-injected by OMO-Slim)
 
 **Primary model:** `deepseek/deepseek-v4-pro`  
 **Small model:** `deepseek/deepseek-v4-flash`
@@ -64,22 +62,9 @@ Ensure the following are installed **before** proceeding:
 | **Git** | Version control | `winget install Git.Git` (Windows) / `brew install git` (macOS) / `apt install git` (Linux) |
 | **nvm** | Node.js version manager | [nvm-sh/nvm](https://github.com/nvm-sh/nvm#installing-and-updating) |
 | **Node.js** (LTS) | Runtime | `nvm install --lts && nvm use --lts` |
-| **pnpm** | Node package manager | `npm install -g pnpm` |
+| **pnpm** | Node package manager | `npm install -g pnpm`（仅首次安装时使用 npm，此后严格使用 pnpm） |
 | **uv** | Python package manager | [astral.sh/uv](https://docs.astral.sh/uv/getting-started/installation/) |
 | **bash** | Shell (required by OpenCode) | Pre-installed on macOS/Linux; on Windows use Git Bash or WSL |
-
-### Quick Setup (One Command)
-
-Clone this repo and run the restore script:
-
-```bash
-git clone https://github.com/zhang4528282/opencode-config.git ~/opencode-config
-cd ~/opencode-config
-chmod +x restore.sh && ./restore.sh
-```
-
-> The script installs OpenCode, creates config files, and installs all 39 skills.  
-> After completion, restart OpenCode and run `/setup-matt-pocock-skills` inside an OpenCode session.
 
 ### Step-by-Step Setup for AI Agents
 
@@ -127,7 +112,7 @@ Create `~/.config/opencode/opencode.json` with the following content:
         "npx", "-y", "chrome-devtools-mcp",
         "--headless",
         "--executablePath",
-        "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+        "REPLACE_WITH_YOUR_BROWSER_PATH"
       ],
       "enabled": true,
       "type": "local"
@@ -334,7 +319,7 @@ npx skills add --skill write-a-skill -y
 These are automatically installed with the `oh-my-opencode-slim` plugin and require no manual steps:
 `clonedeps`, `codemap`, `deepwork`, `oh-my-opencode-slim`, `reflect`, `simplify`, `verification-planning`, `worktrees`
 
-> **Total: 39 skills** (31 manual + 8 auto-installed)
+
 
 ---
 
@@ -357,7 +342,7 @@ After restarting OpenCode, run these checks:
 ```bash
 # Check skill count
 ls ~/.agents/skills/ | wc -l
-# Expected: 39
+
 ```
 
 Inside an OpenCode session, verify interactively:
@@ -366,7 +351,7 @@ Inside an OpenCode session, verify interactively:
 |-------|----------------|-----------------|
 | Model | "当前使用什么模型？" | `deepseek/deepseek-v4-pro` |
 | Plugin | "列出已安装的插件" | `oh-my-opencode-slim` |
-| MCP | "列出可用的 MCP 工具" | 5 MCPs: chrome-devtools, puppeteer, websearch, context7, gh_grep |
+| MCP | "列出可用的 MCP 工具" | 5 MCPs (2 local + 3 auto-injected): chrome-devtools, puppeteer, websearch, context7, gh_grep |
 | Multi-agent | "@explorer 搜索一下 README" | Explorer agent responds with search results |
 
 ---
@@ -393,10 +378,7 @@ npx skills list
 
 | File | Description |
 |------|-------------|
-| `AGENTS.md` | OpenCode behavioral conventions template (used as global config reference) |
-| `AI-SKILLS-GUIDE.md` | Detailed usage guide for all skills and tools |
 | `RESTORE.md` | Environment restoration guide (human-oriented version) |
-| `skills-lock.json` | Lockfile recording installed skill sources and hashes |
 | `README.md` | This file — AI-oriented setup guide |
 
 ---
@@ -405,13 +387,13 @@ npx skills list
 
 ### 这是什么
 
-本仓库包含 **OpenCode AI 编程助手** 的完整开发环境配置，包括：
+本仓库提供 **OpenCode AI 编程助手** 的配置指南和模板。按以下步骤配置：
 
-- **opencode.json** — OpenCode 核心配置（模型、MCP、插件）
-- **oh-my-opencode-slim.json** — 多智能体编排（7 个专职 Agent）
-- **AGENTS.md** — 行为规范和工具使用规则
-- **39 个 Skills** — 领域专属 AI 能力（Vue、TDD、UI 设计、联网搜索等）
-- **5 个 MCP 服务** — 浏览器调试、网页搜索、代码搜索、文档查询
+- **opencode.json** — OpenCode 核心配置（模型、MCP、插件），创建于 `~/.config/opencode/`
+- **oh-my-opencode-slim.json** — 多智能体编排（7 个专职 Agent），创建于 `~/.config/opencode/`
+- **AGENTS.md** — 行为规范和工具使用规则，创建于 `~/.config/opencode/`
+- **Skills** — 领域专属 AI 能力（Vue、TDD、UI 设计、联网搜索等），按下方命令安装
+- **MCP 服务** — 浏览器调试、网页搜索、代码搜索、文档查询（2 个本地配置 + 3 个 OMO-Slim 自动注入）
 
 **主模型：** `deepseek/deepseek-v4-pro`  
 **小模型：** `deepseek/deepseek-v4-flash`
@@ -425,22 +407,9 @@ npx skills list
 | **Git** | 版本控制 | `winget install Git.Git` (Windows) / `brew install git` (macOS) / `apt install git` (Linux) |
 | **nvm** | Node 版本管理 | [nvm-sh/nvm](https://github.com/nvm-sh/nvm) |
 | **Node.js** (LTS) | 运行时 | `nvm install --lts && nvm use --lts` |
-| **pnpm** | Node 包管理器 | `npm install -g pnpm` |
+| **pnpm** | Node 包管理器 | `npm install -g pnpm`（仅首次安装时使用 npm，此后严格使用 pnpm） |
 | **uv** | Python 包管理器 | [astral.sh/uv](https://docs.astral.sh/uv/getting-started/installation/) |
 | **bash** | Shell（OpenCode 要求） | macOS/Linux 自带；Windows 使用 Git Bash 或 WSL |
-
-### 快速配置（一条命令）
-
-克隆仓库，执行一键还原脚本：
-
-```bash
-git clone https://github.com/zhang4528282/opencode-config.git ~/opencode-config
-cd ~/opencode-config
-chmod +x restore.sh && ./restore.sh
-```
-
-> 脚本会自动安装 OpenCode、创建配置文件、安装全部 39 个 Skills。  
-> 完成后，重启 OpenCode，在会话中运行 `/setup-matt-pocock-skills`。
 
 ### AI 自主配置步骤
 
@@ -488,7 +457,7 @@ pnpm add -g opencode@latest
         "npx", "-y", "chrome-devtools-mcp",
         "--headless",
         "--executablePath",
-        "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+        "REPLACE_WITH_YOUR_BROWSER_PATH"
       ],
       "enabled": true,
       "type": "local"
@@ -695,7 +664,7 @@ npx skills add --skill write-a-skill -y
 以下技能随 `oh-my-opencode-slim` 插件自动安装，无需手动操作：
 `clonedeps`、`codemap`、`deepwork`、`oh-my-opencode-slim`、`reflect`、`simplify`、`verification-planning`、`worktrees`
 
-> **总计：39 个 Skills**（31 个手动安装 + 8 个自动注入）
+
 
 ---
 
@@ -718,7 +687,7 @@ npx skills add --skill write-a-skill -y
 ```bash
 # 检查技能数量
 ls ~/.agents/skills/ | wc -l
-# 期望：39
+
 ```
 
 在 OpenCode 会话中交互验证：
@@ -727,7 +696,7 @@ ls ~/.agents/skills/ | wc -l
 |--------|----------------|----------|
 | 模型 | "当前使用什么模型？" | `deepseek/deepseek-v4-pro` |
 | 插件 | "列出已安装的插件" | `oh-my-opencode-slim` |
-| MCP | "列出可用的 MCP 工具" | 5 个 MCP：chrome-devtools、puppeteer、websearch、context7、gh_grep |
+| MCP | "列出可用的 MCP 工具" | 5 个 MCP（2 本地 + 3 自动注入）：chrome-devtools、puppeteer、websearch、context7、gh_grep |
 | 多智能体 | "@explorer 搜索一下 README" | Explorer agent 返回搜索结果 |
 
 ---
@@ -754,8 +723,5 @@ npx skills list
 
 | 文件 | 说明 |
 |------|------|
-| `AGENTS.md` | OpenCode 行为约定模板（全局配置参考） |
-| `AI-SKILLS-GUIDE.md` | 全部技能与工具的详细使用指南 |
 | `RESTORE.md` | 环境还原指南（面向人类） |
-| `skills-lock.json` | 已安装技能的来源和哈希锁定文件 |
 | `README.md` | 本文件 — 面向 AI 的配置指南 |

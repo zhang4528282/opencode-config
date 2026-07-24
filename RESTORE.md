@@ -55,9 +55,7 @@ git clone https://github.com/zhang4528282/opencode-config.git ~/opencode-config
 
 仓库中包含：
 - `RESTORE.md` — 本文档
-- `AGENTS.md` — 全局 + 项目级配置模板
-- `AI-SKILLS-GUIDE.md` — 技能与工具参考
-- `skills-lock.json` — 技能安装锁定（skills.sh 用）
+- `README.md` — 面向 AI 的配置指南
 
 > 本地项目目录 `D:\ai-code` 对应此仓库，你可以 `git clone` 到任意路径后继续操作。
 
@@ -104,7 +102,7 @@ pnpm add -g opencode@latest
         "npx", "-y", "chrome-devtools-mcp",
         "--headless",
         "--executablePath",
-        "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+        "REPLACE_WITH_YOUR_BROWSER_PATH"
       ],
       "enabled": true,
       "type": "local"
@@ -133,7 +131,7 @@ pnpm add -g opencode@latest
 
 ## 五、配置 AGENTS.md
 
-### 4.1 全局配置
+### 5.1 全局配置
 
 创建 `~/.config/opencode/AGENTS.md`：
 
@@ -163,7 +161,7 @@ pnpm add -g opencode@latest
 - 修改完成后运行 lint / typecheck 命令验证。
 ```
 
-### 4.2 项目级配置
+### 5.2 项目级配置
 
 在项目根目录创建 `AGENTS.md`：
 
@@ -256,11 +254,11 @@ pnpm add -g opencode@latest
 
 ---
 
-## 八、安装 Skills（39 个）
+## 八、安装 Skills
 
 所有 skills 安装在 `~/.agents/skills/` 统一目录下。
 
-### 7.1 Matt Pocock Skills（一次性安装全部）
+### 8.1 Matt Pocock Skills（一次性安装全部）
 ```bash
 npx skills@latest add mattpocock/skills \
   --skill code-review \
@@ -281,7 +279,7 @@ npx skills@latest add mattpocock/skills \
   -y
 ```
 
-### 7.2 Vue 相关
+### 8.2 Vue 相关
 ```bash
 # Vue 3 核心生态（Anthony Fu）
 npx skills add antfu/skills --skill vue -y
@@ -290,19 +288,19 @@ npx skills add antfu/skills --skill vue -y
 npx skills add hyf0/vue-skills --skill vue-best-practices -y
 ```
 
-### 7.3 前端设计
+### 8.3 前端设计
 ```bash
 # Taste Skill（前端审美）
 npx skills add Leonxlnx/taste-skill --skill design-taste-frontend -y
 npx skills add Leonxlnx/taste-skill --skill redesign-existing-projects -y
 ```
 
-### 7.4 Agent-Reach（联网搜索）
+### 8.4 Agent-Reach（联网搜索）
 ```bash
 npx skills add Panniantong/agent-reach -y
 ```
 
-### 7.5 其他通用 Skills
+### 8.5 其他通用 Skills
 ```bash
 npx skills add --skill caveman -y
 npx skills add --skill code-review-expert -y
@@ -317,7 +315,7 @@ npx skills add --skill wiki-ingest -y
 npx skills add --skill write-a-skill -y
 ```
 
-### 7.6 OMO-Slim 自带 Skills（插件安装时自动注入）
+### 8.6 OMO-Slim 自带 Skills（插件安装时自动注入）
 以下 skills 随 OMO-Slim 插件自动安装，无需手动操作：
 - `clonedeps`
 - `codemap`
@@ -345,34 +343,34 @@ npx skills add --skill write-a-skill -y
 
 重启 opencode 后，执行以下检查：
 
-### 9.1 检查插件
+### 10.1 检查插件
 在 opencode 中输入：
 ```
 列出已安装的插件
 ```
 应看到 `oh-my-opencode-slim`。
 
-### 9.2 检查 Skills
+### 10.2 检查 Skills
 ```bash
 ls ~/.agents/skills/ | wc -l
 ```
 应输出 `39`。
 
-### 9.3 检查 MCP
+### 10.3 检查 MCP
 在 opencode 中输入：
 ```
 列出可用的 MCP 工具
 ```
 应看到 `chrome-devtools`、`puppeteer`、`websearch`、`context7`、`gh_grep` 共 **5 个 MCP** 的相关工具。
 
-### 9.4 检查模型
+### 10.4 检查模型
 在 opencode 中输入：
 ```
 当前使用什么模型？
 ```
 应输出 `deepseek/deepseek-v4-pro`。
 
-### 9.5 多智能体验证
+### 10.5 多智能体验证
 在 opencode 中输入：
 ```
 @explorer 在项目里搜索一下 README 文件
@@ -456,7 +454,7 @@ done
 echo ""
 echo "=== 还原完成！==="
 echo "请重启 opencode，然后运行 /setup-matt-pocock-skills"
-echo "并手动创建 oh-my-opencode-slim.json（见文档第六章）"
+echo "并手动创建 oh-my-opencode-slim.json（见文档第七章）"
 ```
 
 保存为 `restore.sh`，在新设备上执行：
@@ -492,7 +490,6 @@ pnpm update -g opencode
 ---
 
 > **最后更新：** 2026-07-24
-> **Skills 总数：** 39
 > **插件：** oh-my-opencode-slim
-> **MCP：** chrome-devtools, puppeteer, websearch, context7, gh_grep（5 个）
+> **MCP：** chrome-devtools, puppeteer, websearch, context7, gh_grep（共 5 个：2 本地配置 + 3 自动注入）
 > **主模型：** deepseek/deepseek-v4-pro
