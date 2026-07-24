@@ -127,6 +127,8 @@ pnpm add -g opencode@latest
 
 > ⚠️ **Windows 注意**：`puppeteer` MCP 的 `executablePath` 需改为当前设备的 Edge/Chrome 路径。
 
+> **说明**：以上 `opencode.json` 仅定义了 2 个本地 MCP。实际运行时还有 3 个 MCP（`websearch`、`context7`、`gh_grep`）由 OMO-Slim 插件自动注入，无需手动配置。总计加载 **5 个 MCP**。
+
 ---
 
 ## 五、配置 AGENTS.md
@@ -361,7 +363,7 @@ ls ~/.agents/skills/ | wc -l
 ```
 列出可用的 MCP 工具
 ```
-应看到 `chrome-devtools` 和 `puppeteer` 相关工具。
+应看到 `chrome-devtools`、`puppeteer`、`websearch`、`context7`、`gh_grep` 共 **5 个 MCP** 的相关工具。
 
 ### 9.4 检查模型
 在 opencode 中输入：
@@ -492,5 +494,5 @@ pnpm update -g opencode
 > **最后更新：** 2026-07-24
 > **Skills 总数：** 39
 > **插件：** oh-my-opencode-slim
-> **MCP：** chrome-devtools, puppeteer
+> **MCP：** chrome-devtools, puppeteer, websearch, context7, gh_grep（5 个）
 > **主模型：** deepseek/deepseek-v4-pro
