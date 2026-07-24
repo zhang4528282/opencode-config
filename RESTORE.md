@@ -47,7 +47,23 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ---
 
-## 二、安装 OpenCode
+## 二、克隆配置仓库
+
+```bash
+git clone https://github.com/zhang4528282/opencode-config.git ~/opencode-config
+```
+
+仓库中包含：
+- `RESTORE.md` — 本文档
+- `AGENTS.md` — 全局 + 项目级配置模板
+- `AI-SKILLS-GUIDE.md` — 技能与工具参考
+- `skills-lock.json` — 技能安装锁定（skills.sh 用）
+
+> 本地项目目录 `D:\ai-code` 对应此仓库，你可以 `git clone` 到任意路径后继续操作。
+
+---
+
+## 三、安装 OpenCode
 
 ```bash
 # 全局安装 opencode CLI
@@ -56,7 +72,7 @@ pnpm add -g opencode@latest
 
 ---
 
-## 三、配置 opencode.json
+## 四、配置 opencode.json
 
 创建 `~/.config/opencode/opencode.json`：
 
@@ -113,7 +129,7 @@ pnpm add -g opencode@latest
 
 ---
 
-## 四、配置 AGENTS.md
+## 五、配置 AGENTS.md
 
 ### 4.1 全局配置
 
@@ -176,7 +192,7 @@ pnpm add -g opencode@latest
 
 ---
 
-## 五、安装插件
+## 六、安装插件
 
 ```bash
 # OMO-Slim（多智能体编排引擎）会自动注入 opencode.json 并生成 oh-my-opencode-slim.json
@@ -185,7 +201,7 @@ pnpm add -g opencode@latest
 
 ---
 
-## 六、配置 oh-my-opencode-slim.json
+## 七、配置 oh-my-opencode-slim.json
 
 在首次启动 opencode 后，创建 `~/.config/opencode/oh-my-opencode-slim.json`：
 
@@ -238,7 +254,7 @@ pnpm add -g opencode@latest
 
 ---
 
-## 七、安装 Skills（39 个）
+## 八、安装 Skills（39 个）
 
 所有 skills 安装在 `~/.agents/skills/` 统一目录下。
 
@@ -312,7 +328,7 @@ npx skills add --skill write-a-skill -y
 
 ---
 
-## 八、运行 setup-matt-pocock-skills
+## 九、运行 setup-matt-pocock-skills
 
 在每个项目根目录执行一次，配置 issue tracker、triage labels 和 domain docs：
 
@@ -323,7 +339,7 @@ npx skills add --skill write-a-skill -y
 
 ---
 
-## 九、验证环境
+## 十、验证环境
 
 重启 opencode 后，执行以下检查：
 
@@ -363,7 +379,7 @@ ls ~/.agents/skills/ | wc -l
 
 ---
 
-## 十、快速还原脚本（一键）
+## 十一、快速还原脚本（一键）
 
 将上述步骤汇总为脚本：
 
@@ -450,7 +466,7 @@ chmod +x restore.sh
 
 ---
 
-## 十一、维护
+## 十二、维护
 
 ### 更新所有 Skills
 ```bash
