@@ -15,10 +15,10 @@
 ### 1.2 安装 nvm（Node 版本管理）
 
 ```bash
-# Windows
+# Windows 系统
 winget install CoreyButler.NVMforWindows
 
-# macOS / Linux
+# macOS / Linux 系统
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
@@ -38,10 +38,10 @@ npm install -g pnpm
 ### 1.4 安装 uv（Python 包管理）
 
 ```bash
-# Windows
+# Windows 系统
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
-# macOS / Linux
+# macOS / Linux 系统
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
@@ -354,7 +354,7 @@ npx skills add --skill write-a-skill -y
 ```bash
 ls ~/.agents/skills/ | wc -l
 ```
-应输出 `39`。
+应看到已安装的 skills 目录列表。
 
 ### 10.3 检查 MCP
 在 opencode 中输入：
@@ -426,7 +426,7 @@ echo "=== 3. 创建 AGENTS.md ==="
 cp ~/.config/opencode/AGENTS.md ~/.config/opencode/AGENTS.md.bak 2>/dev/null || true
 # （手动创建或从 Git 仓库拉取）
 
-echo "=== 4. 安装 Matt Pocock Skills ==="
+echo "=== 4. 安装 Matt Pocock 工程技能 ==="
 npx skills@latest add mattpocock/skills \
   --skill code-review --skill codebase-design --skill diagnosing-bugs \
   --skill domain-modeling --skill grill-me --skill grill-with-docs \
@@ -434,18 +434,18 @@ npx skills@latest add mattpocock/skills \
   --skill setup-matt-pocock-skills --skill teach --skill to-issues \
   --skill to-prd --skill triage --skill zoom-out -y
 
-echo "=== 5. 安装 Vue Skills ==="
+echo "=== 5. 安装 Vue 技能 ==="
 npx skills add antfu/skills --skill vue -y
 npx skills add hyf0/vue-skills --skill vue-best-practices -y
 
-echo "=== 6. 安装前端设计 Skills ==="
+echo "=== 6. 安装前端设计技能 ==="
 npx skills add Leonxlnx/taste-skill --skill design-taste-frontend -y
 npx skills add Leonxlnx/taste-skill --skill redesign-existing-projects -y
 
-echo "=== 7. 安装 Agent-Reach ==="
+echo "=== 7. 安装 Agent-Reach 联网搜索 ==="
 npx skills add Panniantong/agent-reach -y
 
-echo "=== 8. 安装其他通用 Skills ==="
+echo "=== 8. 安装其他通用技能 ==="
 for skill in caveman code-review-expert defuddle edit-article find-skills \
   obsidian-vault setup-pre-commit sigma skill-forge wiki-ingest write-a-skill; do
   npx skills add --skill "$skill" -y || echo "  [跳过] $skill"
