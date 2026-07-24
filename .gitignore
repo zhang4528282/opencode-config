@@ -1,0 +1,37 @@
+# 系统文件
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+
+# Node
+node_modules/
+*.log
+
+# 环境
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# 项目子目录（独立项目，不纳入此仓库）
+wallpaper-magpie/
+llm-wiki-agent/
+sigma/
+config/
+
+# Claude Code 本地配置
+.claude/
+
+# 无关文件
+*.md.bak
+秦岭刀刃上的淀粉肠教父.md
+package-lock.json
+node_modules/
